@@ -1,0 +1,146 @@
+{% extends 'seller-header.html' %}
+{% load static %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+</head>
+
+<body>
+
+
+
+
+
+
+    <!-- Page Header Start -->
+    <div class="container-fluid bg-secondary mb-5">
+        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">Edit Product</h1>
+            <div class="d-inline-flex">
+                <p class="m-0"><a href="">Home</a></p>
+                <p class="m-0 px-2">-</p>
+                <p class="m-0">Edit Product</p>
+            </div>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <!-- Contact Start -->
+    <div class="container-fluid pt-5">
+        <div class="text-center mb-4">
+            <h2 class="section-title px-5"><span class="px-2">Edit product</span></h2>
+        </div>
+        <div class="row px-xl-5">
+            <div class="col-lg-12 mb-5">
+                <div class="contact-form">
+                    <div id="success"></div>
+                    {% if msg %}
+                        <b style="color: blue;">{{msg}} </b>
+                    {% endif %}
+                    <form method="post" action="{% url 'seller-edit-product' pk=product.pk %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                         <div class="control-group">
+                            <select name="product_category" class="form-control" id="name">
+                                {% if product.product_category == 'men' %}
+                                    <option>---Select Perroduct Category ---</option>
+                                    <option value="men" selected>Men</option>
+                                    <option value="women">Women</option>
+                                    <option value="kid">Kid</option>
+                                {% elif product.product_category == 'women' %}
+                                    <option>---Select Perroduct Category ---</option>
+                                    <option value="men">Men</option>
+                                    <option value="women" selected>Women</option>
+                                    <option value="kid">Kid</option>
+                                {% elif product.product_category == 'kid' %}
+                                    <option>---Select Perroduct Category ---</option>
+                                    <option value="men">Men</option>
+                                    <option value="women">Women</option>
+                                    <option value="kid" selected>Kid</option>
+                                {% endif %}
+                                    
+                            </select>
+                                
+                        </div>
+                        <div class="control-group">
+                            <input type="text" class="form-control" id="name" value="{{product.product_name}}" name="product_name" />
+                        </div>
+                         <div class="control-group">
+                            <input type="text" class="form-control" id="name" value="{{product.product_price}}" name="product_price" />
+                        </div>
+                        <div class="control-group">
+                            <input type="text" class="form-control" id="email" value="{{product.product_desc}}" name="product_desc"/>
+                        </div>
+                    
+                        <div class="control-group">
+                            <select name="product_size" class="form-control" id="name">
+                                {% if product.product_size == 's' %}
+                                    <option>---Select Product Size ---</option>
+                                    <option value="s" selected>s</option>
+                                    <option value="m">m</option>
+                                    <option value="l">l</option>
+                                    <option value="xl">xl</option>
+                                    <option value="xxl">xxl</option>
+                                {% elif product.product_size == 'm' %}
+                                    <option>---Select Product Size ---</option>
+                                    <option value="s">s</option>
+                                    <option value="m" selected>m</option>
+                                    <option value="l">l</option>
+                                    <option value="xl">xl</option>
+                                    <option value="xxl">xxl</option>
+                                {% elif product.product_size == 'l' %}
+                                    <option>---Select Product Size ---</option>
+                                    <option value="s">s</option>
+                                    <option value="m">m</option>
+                                    <option value="l" selected>l</option>
+                                    <option value="xl">xl</option>
+                                    <option value="xxl">xxl</option>
+                                {% elif product.product_size == 'xl' %}
+                                    <option>---Select Product Size ---</option>
+                                    <option value="s">s</option>
+                                    <option value="m">m</option>
+                                    <option value="l">l</option>
+                                    <option value="xl" selected>xl</option>
+                                    <option value="xxl">xxl</option>
+                                {% elif product.product_size == 'xxl' %}
+                                    <option>---Select Product Size ---</option>
+                                    <option value="s">s</option>
+                                    <option value="m">m</option>
+                                    <option value="l">l</option>
+                                    <option value="xl">xl</option>
+                                    <option value="xxl" selected>xxl</option>
+                                {% endif %}
+                                
+                            </select>
+                        </div>
+              
+               
+                         <div class="control-group">
+                              <img src="{{ product.product_image.url }}" height="100px" width="100px">
+                            <input type="file" class="form-control" id="subject"
+                                  name="product_image" />
+                        </div>
+
+
+
+                        <div>
+                            <button class="btn btn-primary py-2 px-4" type="submit" id="sendMessageButton">Update Product
+                                </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!-- Contact End -->
+
+
+</body>
+
+</html>
+{% endblock %}
